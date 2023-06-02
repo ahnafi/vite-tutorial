@@ -6,6 +6,7 @@ import CardProducts from "../components/fragments/CardProduct";
 import getProducts from "../services/product.services";
 import { getUsername } from "../services/auth.services";
 import { useLogin } from "../hooks/useLogin";
+import { useNavigate } from "react-router-dom";
 
 // const products = [
 //     {
@@ -38,6 +39,7 @@ function ProductsPage() {
   const [cart, setCart] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
   const [products, setProducts] = useState([]);
+  const navigate = useNavigate()
   // const [user, setUser] = useState("");
   // cart
   useEffect(() => {
@@ -89,7 +91,7 @@ function ProductsPage() {
   function logouthandler(e) {
     e.preventDefault();
     localStorage.removeItem("token");
-    window.location.replace("/login");
+    navigate('/login')
   }
 // total price
   const handleTotalPrice = useRef();

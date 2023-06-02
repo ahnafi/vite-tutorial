@@ -1,10 +1,13 @@
 import Button from "../button/Button";
 import InputForm from "../input/InputForm";
-import {Login} from "../../services/auth.services.js";
+import { Login } from "../../services/auth.services.js";
 import { useRef, useEffect, useState } from "react";
+import {  useNavigate } from "react-router-dom";
 
 function FormLogin() {
   const [failedLogin, setfailedLogin] = useState("");
+  const navigate = useNavigate()
+  
   function submithandler(event) {
     event.preventDefault();
     const data = {
@@ -14,9 +17,10 @@ function FormLogin() {
     Login(data, (status, res) => {
       if (status) {
         localStorage.setItem("token", res);
-        window.location.replace("/products")
+        navigate('/products')
+        // window.location.href = "/products";
       } else {
-        setfailedLogin(res.response.data)
+        setfailedLogin(res.response);
       }
     });
   }
@@ -42,7 +46,7 @@ function FormLogin() {
 
   return (
     <form action="" onSubmit={(e) => submithandler(e)}>
-      <p>username:  johnd password: m38rmF$</p>
+      <p>username: johnd password: m38rmF$</p>
       <InputForm
         label="Username"
         type="text"
@@ -56,14 +60,10 @@ function FormLogin() {
         name="password"
         placeholder="***"
       />
-      <Button variant="bg-blue-600" type="submit">
-        Login
-      </Button>
-      {failedLogin && (
-        <p className="text-center text-red-600">
-          {failedLogin}
-        </p>
-      )}
+        <Button variant="bg-blue-600" type="submit">
+          Login
+        </Button>
+      {failedLogin && <p className="text-center text-red-600">{failedLogin}</p>}
     </form>
   );
 }
