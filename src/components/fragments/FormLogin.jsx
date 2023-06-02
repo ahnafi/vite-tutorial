@@ -14,7 +14,7 @@ function FormLogin() {
     Login(data, (status, res) => {
       if (status) {
         localStorage.setItem("token", res);
-        window.location.href = "/products"
+        window.location.replace("/products")
       } else {
         setfailedLogin(res.response.data)
       }

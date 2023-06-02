@@ -1,6 +1,5 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-// import App from './App.jsx'
 import './index.css'
 import { createBrowserRouter , RouterProvider } from 'react-router-dom'
 import LoginPage from './pages/login.jsx'
@@ -36,12 +35,14 @@ const router = createBrowserRouter([
   {
     path : '/',
     element : <Homepage/>,
-    errorElement : <NotFound />
+  },
+  {
+    path : '*',
+    element : <NotFound/>,
   }
 ])
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <RouterProvider router={router} />
-    {/* <App /> */}
   </React.StrictMode>
 )
