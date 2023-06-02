@@ -8,6 +8,8 @@ import RegisterPage from './pages/register.jsx'
 import NotFound from './pages/notfound.jsx'
 import Homepage from './pages/home.jsx'
 import ProductsPage from './pages/products'
+import Profile from './pages/Profile'
+import DetailProductPage from './pages/detailProductPage'
 const router = createBrowserRouter([
   {
     path : '/login',
@@ -21,6 +23,14 @@ const router = createBrowserRouter([
   {
     path : '/products',
     element : <ProductsPage />
+  },
+  {
+    path : '/profile',
+    element : <Profile />
+  },
+  {
+    path : '/product/:id',
+    element : <DetailProductPage></DetailProductPage>
   },
   
   {
